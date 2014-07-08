@@ -1,0 +1,33 @@
+<% params_to_keep = [:size, :tagged_with, :query, :element_id, :options, :content_id, :_] %>
+
+<div id="filter_bar">
+  <h2><%= _t('Filter') %></h2>
+  <%= select_tag(
+    'picture_filter',
+    options_for_select([
+      [_t(:all_pictures), ''],
+      [_t(:last_upload_only), 'last_upload'],
+      [_t(:recently_uploaded_only), 'recent'],
+      [_t(:without_tag), 'without_tag']
+    ], params[:filter]),
+    :data => { :remote => !!request.xhr? },
+    :class => 'alchemy_selectbox'
+  ) %>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $('#picture_filter').on('change', function(e) {
+      var $this = $(this);
+      var url = '<%= alchemy.admin_pictures_path(merge_params_only(params_to_keep)).html_safe %>';
+      if ($this.data('remote') === true) {
+        $.get(url, {filter: $this.val()}, null, 'script');
+      } else {
+        Alchemy.pleaseWaitOverlay();
+        delimiter = url.match(/\?/) ? '&' : '?';
+        window.location = url + delimiter + 'filter=' + $this.val();
+      }
+      return false;
+    });
+  });
+</script>

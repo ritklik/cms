@@ -1,0 +1,18 @@
+<%= alchemy_form_for [:admin, @essence_file] do |f| %>
+  <%= f.input :title %>
+    <%- if @options[:css_classes].present? -%>
+      <%= f.input :css_class,
+        collection: @options[:css_classes],
+        include_blank: _t('None'),
+        input_html: {class: 'alchemy_selectbox'} %>
+    <%- else -%>
+    <%= f.input :css_class,
+      label: _t(:position_in_text),
+      collection: [
+        [_t(:above), "no_float"],
+        [_t(:left), "left"],
+        [_t(:right), "right"]
+      ], include_blank: _t('Layout default'), input_html: {class: 'alchemy_selectbox'} %>
+    <%- end -%>
+  <%= f.submit _t(:save) %>
+<% end %>

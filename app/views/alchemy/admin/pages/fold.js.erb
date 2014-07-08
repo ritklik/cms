@@ -1,0 +1,3 @@
+$('#page_<%= @page.id -%>').replaceWith('<%= j render("page", page: @page) %>');
+Alchemy.watchForDialogs('#page_<%= @page.id %>');
+Alchemy.Spinner.watch('#page_<%= @page.id %>');

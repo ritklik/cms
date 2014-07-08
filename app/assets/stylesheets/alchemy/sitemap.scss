@@ -1,0 +1,385 @@
+#sort_panel {
+  background: $medium-gray;
+  padding: 45px 0 8px 0;
+  position: fixed;
+  top: 27px;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  border-bottom: $default-border;
+
+  div.info {
+    margin: 8px 8px 8px 78px;
+    width: 720px;
+  }
+
+  .buttons {
+    margin-left: 78px;
+  }
+}
+
+.sitemap_pagename_link {
+  background-color: #fff;
+  color: black;
+  display: block;
+  padding-left: 4px;
+  text-decoration: none;
+  @include transition(background-color, 400ms);
+
+  &.inactive {
+    color: #656565;
+  }
+
+  :hover {
+    text-decoration: underline;
+
+    &:after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      float: left;
+      margin-right: 4px;
+      background: image-url('alchemy/icons.png') -160px -168px;
+      margin-top: 4px;
+    }
+  }
+}
+
+.redirect_url {
+  position: absolute;
+  top: 4px;
+  right: 199px;
+  text-align: right;
+  background-color: #fff0c4;
+  line-height: 22px;
+  padding-right: 4px;
+  font-size: 10px;
+  padding-left: 4px;
+  max-width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#page_selector_container .sitemap_pagename_link:hover {
+  text-decoration: none;
+}
+
+#page_selector_container .sitemap_pagename_link:hover:after {
+  display: none;
+}
+
+.sitemap_line_spacer {
+  float: left;
+  width: 20px;
+  height: 28px;
+}
+
+#layoutpages li {
+  padding: 0;
+}
+
+.sitemap_page {
+  height: 22px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  position: relative;
+
+  &.highlight .sitemap_pagename_link {
+    background-color: #FFFBA5;
+  }
+
+  &.no-match .sitemap_pagename_link {
+    color: $medium-gray;
+  }
+
+  &:hover .sitemap_pagename_link {
+    background-color: $light_yellow;
+  }
+}
+
+div.sitemap_left_images {
+  width: 16px;
+  margin-top: 3px;
+  float: left;
+  margin-right: 8px;
+  background-color: $light-gray;
+}
+
+.sitemap_right_tools {
+  height: 22px;
+  background-color: $light-gray;
+  padding-left: 8px;
+  float: right;
+  width: 120px;
+
+  .sitemap_tool {
+    float: left;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .icon.blank {
+    margin-left: 2px;
+    float: left;
+    margin-top: 3px;
+    margin-right: 3px;
+  }
+}
+
+.sitemap_sitetools {
+  padding: 0;
+  float: left;
+  width: 72px;
+}
+
+div#page_selector_container div.sitemap_right_tools {
+  width: 24px;
+}
+
+ul#sitemap {
+
+  li.legend {
+
+    span.right {
+      margin-right: 52px;
+
+      span.page_move {
+        @include inline-block;
+        width: 74px;
+        text-align: center;
+      }
+    }
+  }
+
+  .page_folder {
+    @extend .icon;
+    float: left;
+    margin-left: -21px;
+    margin-top: 1px;
+
+    &.collapsed { @extend .icon.expand.small }
+    &.folded { @extend .icon.collapse.small }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding-left: 0;
+
+    .selected_page a {
+      background-color: $linked-color;
+      color: $dark-gray;
+    }
+
+    li {
+      padding-left: 22px;
+      padding-right: 0;
+    }
+  }
+}
+
+ul#sitemap li,
+ul#layoutpages li {
+  list-style-type: none;
+  display: block;
+  margin-left: 0;
+  margin-bottom: 0;
+  line-height: 22px;
+}
+
+ul#sitemap li .sitemap_toolrow,
+ul.list li .sitemap_toolrow {
+  margin: 0;
+  overflow: auto;
+  padding: 4px 0;
+}
+
+ul#sitemap .sitemap_sitename,
+ul.list .sitemap_sitename {
+  height: 22px;
+  line-height: 22px;
+  overflow: hidden;
+}
+
+div.page_infos {
+  @extend .right-rounded-border;
+  background-color: #fff;
+  border-left: 1px solid $light-gray;
+  float: right;
+  height: 20px;
+  padding: 1px;
+  width: 68px;
+}
+
+#sub_navigation .page_status_and_name .page_status {
+  float: none;
+  @include inline-block(-1px);
+  margin-left: 2px;
+}
+
+.page_status {
+  width: 16px;
+  height: 16px;
+  background-image: image-url('alchemy/icons.png');
+  background-repeat: no-repeat;
+  float: left;
+
+  &.restricted {
+    background-position: -256px -39px;
+  }
+
+  &.not_restricted {
+    background-position: -288px -39px;
+    @include opacity(0.3);
+  }
+
+  &.visible {
+    background-position: -128px -39px;
+  }
+
+  &.not_visible {
+    background-position: -160px -39px;
+    @include opacity(0.3);
+  }
+
+  &.public {
+    background-position: -192px -39px;
+  }
+
+  &.not_public {
+    background-position: -224px -39px;
+    @include opacity(0.3);
+  }
+}
+
+#sitemap .page_status {
+  margin: 2px 2px 0 4px;
+}
+
+.alchemy-dialog .page_status {
+  margin: 4px 4px 0 0;
+}
+
+#sitemap {
+
+  &.sorting {
+
+    .page.icon { cursor: move }
+  }
+
+  .page.icon {
+    float: left;
+    position: relative;
+  }
+
+  .locked .page.icon {
+    background-position: -32px -40px;
+  }
+}
+
+.sitemap_sitestatus {
+  float: right;
+  margin-top: 4px;
+}
+
+a.folder_link {
+  text-decoration: none;
+  outline: none;
+}
+
+#create_language_tree_form {
+  width: 80%;
+  max-width: 500px;
+  margin: 2em auto;
+  padding: 4*$default-padding;
+  border: $default-border;
+  background: $medium-gray;
+  @extend %rounded-border;
+}
+
+h2#sitemap_heading {
+  padding: 0;
+
+  span.page_infos {
+    margin-right: 144px;
+    width: 40px;
+    text-align: center;
+    float: right;
+    line-height: 28px;
+  }
+
+  span.page_name {
+    line-height: 28px;
+    margin-left: 24px;
+  }
+}
+
+#page_filter_result {
+  display: none;
+  padding-left: 4*$default-padding;
+}
+
+.alchemy-dialog ul#sitemap {
+  margin: 0;
+  padding: 0 8px 8px 0;
+
+  .page.icon { cursor: default }
+
+  li li.selectboxit-option {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .selectboxit-options {
+    right: 0;
+  }
+
+  .close_elements_from_page_selector {
+    position: absolute;
+    right: 4px;
+    top: 12px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    @extend .icon-cross;
+  }
+}
+
+.show_elements_to_link {
+  @extend .icon;
+  @extend .element_window;
+}
+
+.elements_from_page_selector {
+  width: 100%;
+}
+
+.elements_for_page {
+  position: absolute;
+  right: 32px;
+  top: -7px;
+  z-index: 15;
+  background-color: white;
+  width: 280px;
+  height: 33px;
+  padding: $default-padding;
+  border: $default-border;
+  @include box-shadow(#9ea09f 0px 0px 4px);
+  @extend %rounded-border;
+
+  .spinner {
+    top: 17px !important;
+    left: 50% !important;
+    margin-left: 4px;
+  }
+
+  .alchemy_selectbox {
+    width: 252px;
+  }
+}

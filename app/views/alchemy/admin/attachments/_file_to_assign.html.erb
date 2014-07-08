@@ -1,0 +1,15 @@
+<li class="assign_file_file <%= cycle('even', 'odd') %>">
+  <%= link_to(
+    render_icon(file_to_assign.icon_css_class) + file_to_assign.name,
+    {
+      controller: 'essence_files',
+      action: 'assign',
+      attachment_id: file_to_assign.id,
+      content_id: @content.id,
+      options: @options.to_json
+    },
+    remote: true,
+    method: 'put',
+    title: file_to_assign.name
+  ) %>
+</li>

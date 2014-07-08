@@ -1,0 +1,4 @@
+<% cache(content) do %>
+<% options = local_assigns.fetch(:options, {}) %>
+<%= raw content.essence.send(options[:plain_text] ? :stripped_body : :body) %>
+<% end %>

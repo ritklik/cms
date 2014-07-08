@@ -1,0 +1,29 @@
+<% any_tags = Alchemy::Attachment.tag_counts.any? %>
+<%= toolbar(
+  buttons: [
+    {
+      icon: 'upload',
+      url: alchemy.new_admin_attachment_path,
+      hotkey: 'alt+n',
+      dialog_options: {
+        title: _t(:upload_file),
+        size: '540x515'
+      },
+      title: _t(:upload_file),
+      class: 'icon_button',
+      label: _t(:upload_file),
+      if_permitted_to: [:create, Alchemy::Attachment]
+    }
+  ]
+) %>
+<div id="archive_all" class="<%= any_tags ? 'with_tag_filter' : nil %>">
+  <%= resources_header %>
+  <%= render partial: 'files_list' %>
+  <% if any_tags %>
+  <div id="library_sidebar">
+    <div id="tag_list" class="<%= params[:tagged_with].present? ? 'filtered' : '' %>">
+      <%= render partial: 'tag_list' %>
+    </div>
+  </div>
+  <% end %>
+</div>

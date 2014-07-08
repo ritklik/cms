@@ -1,0 +1,20 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1
+branches:
+  only:
+    - master
+script: rake
+env:
+  - DB=mysql
+  - DB=postgresql
+  - RAILS_VERSION=4.1.1
+notifications:
+  irc:
+    on_success: change
+    on_failure: always
+    use_notice: true
+    channels:
+      - "irc.freenode.org#alchemy_cms"

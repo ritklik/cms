@@ -1,0 +1,772 @@
+#alchemy_elements_window {
+  @include box-sizing(border-box);
+  position: absolute;
+  right: 0;
+  top: 73px;
+  width: 400px;
+  height: auto;
+  border-left: $default-border;
+  @include transition(200ms ease-in-out);
+}
+
+#element_area {
+  @include box-sizing(border-box);
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .sortable_cell {
+    min-height: 100px;
+    padding: 2*$default-padding $default-padding 2px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 140px;
+  }
+}
+
+.element_heading {
+  padding: 0;
+  z-index: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  left: 35px;
+  top: 11px;
+  width: 322px;
+
+  .preview_text_quote {
+    font-size: 10px;
+    font-style: italic;
+    line-height: 15px;
+  }
+}
+
+span.preview_text_element_name {
+  font-size: 10px;
+  text-shadow: #efefef 1px 1px 1px;
+  font-weight: bold;
+  line-height: 15px;
+}
+
+.element_handle {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 8px;
+  top: 9px;
+
+  .element.icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  span.icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    &.element_dirty {
+      background-position: -160px -166px;
+    }
+  }
+}
+
+.draggable .element_handle {
+  cursor: move;
+}
+
+.add_picture {
+  float: left;
+  margin: 1px;
+  width: 119px;
+  border: 1px solid #c0c0c0;
+  @extend %rounded-border;
+  height: 123px;
+
+  a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    text-decoration: none;
+    overflow: hidden;
+    text-align: center;
+    font-weight: bold;
+    line-height: 104px;
+    @extend %rounded-border;
+    font-size: 40px;
+    background-color: $light-gray;
+
+    &:hover {
+      background-color: $medium-gray;
+    }
+
+    .icon {
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 48px;
+      left: 44px;
+    }
+  }
+}
+
+.ajax_folder {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+.element_editor {
+  border: 1px solid $default-border-color;
+  @extend %rounded-border;
+  background-color: $light-gray;
+  margin-bottom: 2*$default-margin;
+
+  &.not-draggable {
+    @include opacity(0.5);
+  }
+
+  &.dirty {
+    border-color: #d0c83d;
+
+    .element_head, .element_foot {
+      background-color: #fff8df;
+    }
+  }
+
+  &.selected {
+    border-color: $blue;
+    @include box-shadow(0 0 4px $blue);
+  }
+
+  form {
+    margin: 0;
+    padding: 8px 8px 0 8px;
+  }
+
+  .validation_notice {
+    font-size: 10px;
+    margin-top: 1em;
+  }
+
+  .foot_note {
+    margin-bottom: 1em;
+  }
+
+  .content_editor_error {
+    border: 1px solid #f5b04e;
+    padding: 4px 8px;
+    line-height: 21px;
+    background-color: #f5dea9;
+    margin-top: 4px;
+    @extend %rounded-border;
+
+    span.icon.warning {
+      position: relative;
+      top: 2px;
+      margin-right: 8px;
+      vertical-align: top;
+    }
+  }
+
+  .autocomplete_tag_list {
+    background-color: #e5dcca;
+    margin: 0 -8px 1px -8px;
+    padding: 2*$default-padding;
+    padding-left: 38px;
+
+    label {
+      top: 21px;
+      left: 8px;
+      font-size: 10px;
+      z-index: 1;
+    }
+
+    .select2-container {
+      width: 100%;
+
+      .select2-choices {
+        background-color: #F1EAD9;
+
+        .select2-search-choice {
+          background-color: #e5dcca;
+        }
+      }
+    }
+  }
+}
+
+.element_head, .element_foot {
+  position: relative;
+}
+
+.element_head {
+  padding: 8px 0 6px;
+  margin-bottom: 0;
+  height: 20px;
+  background-color: $medium-gray;
+  @extend .disable-user-select;
+
+  .spinner {
+    top: 9px;
+    right: 9px;
+  }
+}
+
+.element_foot {
+  padding: 2*$default-padding;
+  width: 100%;
+  height: 29px;
+  margin-left: -8px;
+  margin-right: -8px;
+  background-color: $medium-gray;
+
+  .element_tools {
+    float: left;
+    margin-right: 8px;
+    margin-top: 6px;
+  }
+
+  .element_public {
+    float: left;
+    margin-top: 6px;
+  }
+
+  .button {
+    float: right;
+    margin: 0;
+  }
+}
+
+div.element_tools {
+  height: 20px;
+}
+
+span.element_tools_icons {
+  float: left;
+}
+
+.element_tools a {
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin: 1px 4px 1px 1px;
+}
+
+a.delete_element_button {
+  background: image-url('alchemy/icons.png') no-repeat -63px -72px;
+}
+
+a.element_copy_button {
+  background: image-url('alchemy/icons.png') no-repeat -128px -72px;
+}
+
+a.element_move_button {
+  background: image-url('alchemy/icons.png') no-repeat -97px -72px;
+}
+
+div.picture_gallery_images {
+  overflow: hidden;
+  margin: $default-margin 0;
+  border: 1px solid $default-border-color;
+  @extend %rounded-border;
+  background-color: $medium-gray;
+  padding: 1px;
+
+  .essence_picture_editor {
+    margin: 1px;
+    float: left;
+    height: 126px;
+
+    .picture_thumbnail { margin: 0 }
+  }
+}
+
+div.picture_thumbnail div.picture_image {
+  height: 93px;
+  overflow: hidden;
+
+  img.img_paddingtop {
+    @extend .disable-user-select;
+  }
+}
+
+div#cells {
+  min-height: 100px;
+}
+
+.linkable_essence_tools {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  .icon_button {
+    margin: 0 0 0 4px;
+    padding: 3px;
+    position: absolute;
+    bottom: 4px;
+    right: 28px;
+    @extend %button-defaults;
+    @include border-radius(0);
+
+    &.unlink {
+      right: 0;
+      @extend .right-rounded-border;
+    }
+  }
+}
+
+a.expand_element {
+  background: image-url('alchemy/icons.png') no-repeat -160px -72px;
+  height: 16px;
+  width: 16px;
+  text-decoration: none;
+  display: block;
+  margin: 1px;
+}
+
+a.fold_element {
+  background: image-url('alchemy/icons.png') no-repeat -192px -72px;
+  height: 16px;
+  width: 16px;
+  text-decoration: none;
+  display: block;
+  margin: 1px;
+}
+
+.droppable_element_placeholder {
+  border: 1px dotted $button-border-color;
+  background-color: $medium-gray;
+  margin-bottom: 2*$default-margin;
+}
+
+.edit_images_bottom {
+  height: 19px;
+  position: absolute;
+  z-index: 0;
+  left: 5px;
+  bottom: 2px;
+  width: 111px;
+
+  a {
+    float: left;
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 18px;
+    height: 18px;
+
+    &.linked {
+      position: relative;
+      @extend %rounded-border;
+      background-color: $linked-color;
+      border: 1px solid $button-border-color;
+      bottom: 1px;
+      margin-right: 2px;
+      width: 18px;
+      height: 18px;
+      margin-left: 0;
+
+      .icon { margin-left: 1px }
+    }
+
+    &.disabled {
+      @include opacity(0.3);
+      cursor: default;
+    }
+  }
+}
+
+div.content_editor.essence_date {
+  float: none;
+  @include inline-block;
+  vertical-align: top;
+
+  input.date {
+    width: 154px;
+  }
+}
+
+div.essence_picture_editor {
+  position: relative;
+
+  .picture_tool_delete {
+    position: absolute;
+    right: $default-margin;
+    top: $default-margin;
+    padding: 2px 2px 0;
+    z-index: 2;
+  }
+
+  .picture_thumbnail:hover .picture_tool_delete {
+    display: block;
+  }
+
+  .picture_thumbnail {
+    width: 111px;
+    height: 115px;
+    margin: $default-margin 0;
+
+    .thumbnail_background {
+      width: 111px;
+      height: 93px;
+    }
+  }
+
+  &.validation_failed .picture_thumbnail {
+    border-color: $error_border_color
+  }
+
+  .thumbnail_background.missing:before {
+    font-family: 'Alchemy Icons';
+    @extend .icon-pictures:before;
+    font-size: 48px;
+    color: $medium-gray;
+    vertical-align: top;
+  }
+
+  .essence_picture_css_class {
+    position: absolute;
+    z-index: 1;
+    bottom: 24px;
+    width: 99px;
+    background-color: white;
+    background-color: rgba(255, 254, 255, 0.7);
+    padding: 4px 8px;
+    font-size: 10px;
+    text-align: right;
+    height: 12px;
+    overflow: hidden;
+  }
+}
+
+.dragable_picture {
+  float: left;
+
+  .picture_handle {
+    cursor: move;
+  }
+}
+
+.picture_thumbnail .picture_handle {
+  position: absolute;
+  z-index: 1;
+  width: 110px;
+  height: 93px;
+  top: 4px;
+  left: 4px;
+  background-color: transparent;
+  @extend .disable-user-select;
+}
+
+div.file {
+  padding: 0;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  border: 1px solid #c0c0c0;
+  background-color: #f3f3f3;
+  @extend %rounded-border;
+  height: 24px;
+}
+
+div.file_icon {
+  text-align: center;
+  float: left;
+  height: 24px;
+  width: 24px;
+
+  span.icon {
+    margin: $default-margin;
+  }
+
+  a.assign_file {
+    display: block;
+    height: 16px;
+    background: image-url('alchemy/icons.png') no-repeat -480px -40px;
+    width: 16px;
+    margin: $default-margin;
+  }
+}
+
+.content_editor.essence_file {
+
+  .file_name {
+    white-space: nowrap;
+    overflow: hidden;
+    float: left;
+    max-width: 80%;
+    line-height: 25px;
+    font-size: 10px;
+    text-overflow: ellipsis;
+  }
+}
+
+.essence_file_tools {
+  height: 24px;
+  float: right;
+  background-color: white;
+  width: 48px;
+
+  a {
+    text-decoration: none;
+    width: 16px;
+    height: 16px;
+    margin: $default-margin;
+    float: left;
+
+    &.assign_file {
+      background: image-url('alchemy/icons.png') -512px -40px;
+    }
+
+    &.edit_file {
+      background: image-url('alchemy/icons.png') -160px -167px;
+    }
+  }
+}
+
+a.new_content_link {
+  display: block;
+  text-align: center;
+  margin-bottom: 12px;
+  margin-top: 4px;
+}
+
+div.tinymce_container {
+  position: relative;
+  margin: $default-margin 0;
+
+  .spinner {
+    top: 70px;
+    left: 50%;
+  }
+}
+
+input.long,
+input.text_long {
+  width: 363px;
+}
+
+select.long {
+  width: 376px;
+  margin: 0;
+  padding: 0;
+}
+
+div.content_editor {
+  margin-bottom: 8px;
+  position: relative;
+
+  .thin_border, input[type="text"] {
+    width: 100%;
+  }
+
+  &.missing p {
+    line-height: 25px;
+    padding: 2*$default-padding;
+    border: 1px solid #f5b04e;
+    background-color: #f5dea9;
+    @extend %rounded-border;
+    font-size: 11px;
+
+    span.icon.warning {
+      vertical-align: text-bottom;
+      margin-left: 2px;
+      margin-right: 6px;
+    }
+  }
+
+  &.display_inline {
+    @include inline-block;
+    margin-right: 4px;
+    vertical-align: top;
+
+    .thin_border, input[type="text"] {
+      width: 170px;
+    }
+  }
+
+  &.validation_failed {
+
+    label { color: $error_text_color }
+    input { @extend %field-with-error }
+    .tinymce_container {
+      outline: 1px solid $error_border_color;
+    }
+  }
+
+  label {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 10px;
+    text-shadow: #fff5e1 1px 1px 0;
+    line-height: 15px;
+    text-indent: 1px;
+
+    span.warning.icon {
+      position: relative;
+      top: 2px;
+    }
+
+    &.inline {
+      @include inline-block;
+      min-width: 90px;
+      margin-right: 4px;
+    }
+
+    a.icon_button.small {
+      width: 10px;
+      height: 10px;
+      display: none;
+
+      .icon {
+        top: 1px;
+        right: 1px;
+      }
+
+      &:hover {
+
+        .icon {
+          right: 2px;
+        }
+      }
+    }
+  }
+
+  &.essence_select {
+
+    label { margin-bottom: 4px }
+
+    .select2-container {
+      width: 100%;
+    }
+
+    &.display_inline .select2-container {
+      width: 170px;
+    }
+  }
+
+  &:hover label a.icon_button.small {
+    @include inline-block;
+  }
+
+  select.essence_editor_select {
+    @extend %rounded-border;
+    background: white;
+    border: 1px solid $button-border-color;
+    font-size: 11px;
+    height: 21px;
+    line-height: 21px;
+    padding: 2px;
+
+    optgroup {
+      color: gray;
+      font-style: normal;
+      font-weight: bold;
+      text-indent: 8px;
+
+      option {
+        text-indent: 24px;
+      }
+    }
+
+    option {
+      padding-top: 2px;
+      padding-bottom: 2px;
+      color: black;
+    }
+  }
+
+  &.essence_date {
+    float: none;
+    @include inline-block;
+    vertical-align: top;
+
+    input.date {
+      width: 154px;
+    }
+  }
+
+  &.essence_picture_editor {
+    float: none;
+    height: auto;
+    @include inline-block;
+  }
+}
+
+.content_rtf_text_area {
+  display: none;
+}
+
+div.pictures_for_element {
+  overflow: auto;
+  margin-top: 4px;
+}
+
+textarea.default_tinymce, textarea.custom_tinymce {
+  visibility: hidden;
+}
+
+.essence_html_editor textarea {
+  font-family: $mono-font-face;
+  resize: vertical;
+  font-size: 11px;
+}
+
+.text_short_float_left {
+  width: 170px;
+  float: left;
+  margin-right: 10px;
+  border-width: 1px;
+}
+
+.element_errors {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: $error_background_color;
+  padding: 2*$default-padding;
+  list-style-type: none;
+  @extend %rounded-border;
+  color: $error_text_color;
+  border: 1px solid $error_border_color;
+
+  p {
+    margin: 0;
+    line-height: 24px;
+  }
+}
+
+a.hint {
+  position: absolute;
+  right: 32px;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  cursor: help !important;
+
+  &:hover span.bubble { display: block }
+  span.bubble { @extend %tooltip }
+}
+
+.content_editor .hint {
+  position: relative;
+  top: auto;
+  right: auto;
+  display: inline-block;
+  margin-right: 4px;
+  margin-top: -2px;
+  margin-left: -1px;
+
+  .bubble {
+    right: auto;
+    left: -4px;
+    top: 24px;
+
+    &:before {
+      right: auto;
+      left: 5px;
+    }
+  }
+}
